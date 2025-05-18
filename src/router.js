@@ -1,4 +1,3 @@
-// router.js
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import About from "./components/About";

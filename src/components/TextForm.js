@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
 export default function TextForm(props) {
-  const { showAlert, mode, heading } = useOutletContext();
+  const { showAlert, mode } = useOutletContext();
 
   const handleUpClick = () => {
     console.log("Uppercase was clicked" + text);
@@ -53,7 +53,7 @@ export default function TextForm(props) {
         className="container"
         style={{ color: props.mode === "dark" ? "white" : "black" }}
       >
-        <h1 className="mb-4">{heading}</h1>
+        <h1 className="mb-4">{props.heading}</h1>
         <div className="mb-3">
           <textarea
             className="form-control"
@@ -66,23 +66,23 @@ export default function TextForm(props) {
             rows="8"
           ></textarea>
         </div>
-        <button disabled={text.length === 0} className="btn btn-primary mx-3 my-3" onClick={handleUpClick}>
+        <button disabled={text.length === 0} className="btn btn-secondary mx-3 my-3" onClick={handleUpClick}>
           Convert to uppercase
         </button>
-        <button disabled={text.length === 0} className="btn btn-primary mx-3 my-3" onClick={handleLoClick}>
+        <button disabled={text.length === 0} className="btn btn-secondary mx-3 my-3" onClick={handleLoClick}>
           Convert to Lowercase
         </button>
         <button disabled={text.length === 0}
-          className="btn btn-primary mx-3 my-3"
+          className="btn btn-secondary mx-3 my-3"
           onClick={handleClearClick}
         >
           Clear text
         </button>
-        <button disabled={text.length === 0} className="btn btn-primary mx-3 my-3" onClick={handleCopyClick}>
+        <button disabled={text.length === 0} className="btn btn-secondary mx-3 my-3" onClick={handleCopyClick}>
           Copy text
         </button>
         <button disabled={text.length === 0}
-          className="btn btn-primary mx-3 my-3"
+          className="btn btn-secondary mx-3 my-3"
           onClick={handleExtraSpacesClick}
         >
           Remove Extra Spaces
@@ -93,7 +93,7 @@ export default function TextForm(props) {
         style={{ color: props.mode === "dark" ? "white" : "black"}}
       >
         <h2>Your text summary</h2>
-        <p>{text.split(" ").filter(word => word.trim() !== "").length} words and {text.length} Characters</p>
+        <p>{text.split(/\s+/).filter(word => word.trim() !== "").length} words and {text.length} Characters</p>
         {/* <p>{text.split(" ").length} words and {text.length} characters</p> */}
         <p>{0.008 * text.split(" ").filter(word => word.trim() !== "").length} Minutes read</p>
         <h2>Preview</h2>
